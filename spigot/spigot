@@ -13,8 +13,9 @@ SPIGOT_BUILDTOOLS_URL=${SPIGOT_BUILDTOOLS_URL:-"https://hub.spigotmc.org/jenkins
 MC_VERSION=${VERSION:-1.9.2}
 MC_JAR=${MC_JAR:-"spigot-$MC_VERSION.jar"}
 
-# Optional variables that are executed with the jar execution. Ram specifications should be here
+# Variables for jar execution
 MC_OPTS=${MC_OPTS:-"-server -Xmx1024m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"}
+TMUX_SESSION=spigot
 
 #Start the server
 init
@@ -59,5 +60,5 @@ run_spigot() {
     echo "Running Spigot"
     echo "MINECRAFT_OPTS: $MC_OPTS"
     MC_COMMAND="gosu minecraft java $MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
-    exec $MC_COMMAND
+    tmux new -s $TMUX_SESSION "MC_COMMAND"
 }
