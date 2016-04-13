@@ -16,7 +16,14 @@ MC_JAR=${MC_JAR:-"spigot-$MC_VERSION.jar"}
 # Optional variables that are executed with the jar execution. Ram specifications should be here
 MC_OPTS=${MC_OPTS:-"-server -Xmx1024m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"}
 
-TMUX_SESSION=spigot
+#Start the server
+init
+
+init(){
+ build_server
+ sync
+ run_spigot
+}
 
 build_server() {
     # Compile spigot if it does not exist.
@@ -49,7 +56,8 @@ sync() {
 }
 
 run_spigot() {
-    echo "Running Minecraft"
+    echo "Running Spigot"
     echo "MINECRAFT_OPTS: $MINECRAFT_OPTS"
     MINECRAFT_COMMAND="gosu minecraft java $MINECRAFT_OPTS -jar $MC_HOME/$MC_JAR nogui"
+    exec $MINECRAFT_COMMAND
 }
