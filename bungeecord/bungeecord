@@ -1,0 +1,68 @@
+# Base location of persistent data
+BUNGEE_BASE="/opt/bungeecord"
+BUNGEE_GLOBAL="$BUNGEE_BASE/global"
+BUNGEE_JARS="$BUNGEE_BASE/jars"
+
+# Variables required for jar downloading
+BUNGEE_URL_BASE="http://ci.md-5.net/job/BungeeCord"
+BUNGEE_URL_TARGET_PATH="artifact/bootstrap/target/BungeeCord.jar"
+if [ -z "$BUNGEE_VERSION" ]; then
+    BUNGEE_VERSION=latest
+    BUNGEE_URL="$BUNGEE_URL_BASE/lastSuccessfulBuild/$BUNGEE_URL_TARGET_PATH"
+else
+    BUNGEE_URL="$BUNGEE_URL_BASE/$BUNGEE_VERSION/$BUNGEE_URL_TARGET_PATH"
+fi
+BUNGEE_JAR="BungeeCord-$BUNGEE_VERSION.jar"
+
+# Variables for jar execution
+BUNGEE_OPTS=${BUNGEE_OPTS:-"-server -Xmx1024m -XX:MaxPermSize=256m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"}
+TMUX_SESSION=bungeecord
+
+#Initiate the server loading process
+init
+
+init(){
+  download_server
+  sync
+  run_bungeecord
+}
+# Downloads the server jar to the global persistent volume if the jar does not exist there yet
+download_server() {
+    # Download BungeeCord if it does not exist
+    if [ ! -f "$BUNGEE_JARS/$BUNGEE_JAR" ]; then
+        echo "Downloading BungeeCord. Selected version: $BUNGEE_VERSION"
+        wget -O "$BUNGEE_JARS/$BUNGEE_JAR" "$BUNGEE_URL"
+
+        if [ $? -ne 0 ]; then
+            >&2 echo "Unable to download BungeeCord."
+            >&2 echo "Make sure you specified the correct version via the BUNGEE_VERSION variable."
+            exit 1
+        fi
+    fi
+}
+
+# Sync files from the persistent BUNGEE_BASE to the temporary BUNGEE_HOME
+sync(){
+  mkdir -p $BUNGEE_HOME
+  # Server jar
+  cp $BUNGEE_JARS/$BUNGEE_JAR $BUNGEE_HOME/$BUNGEE_JAR
+  # Global files
+  rsync -a $BUNGEE_GLOBAL/ $BUNGEE_HOME/
+}
+
+# Executes the bungeecord jar
+run_bungeecord() {
+    echo "Running BungeeCord"
+    echo "BUNGEE_OPTS: $BUNGEE_OPTS"
+    
+    # Command to start bungeecord instance with
+    BUNGEE_COMMAND="gosu bungeecord java $BUNGEE_OPTS -jar $BUNGEE_HOME/$BUNGEE_JAR"
+    
+    # Append parameters to the command
+    PARAMS=$@
+    echo "Extra parameters: ${PARAMS[@]}"
+    BUNGEE_COMMAND="$BUNGEE_COMMAND ${PARAMS[@]}"
+    
+    # Run actual command in a tmux session
+    tmux new -s $TMUX_SESSION "$BUNGEE_COMMAND"
+}
