@@ -1,0 +1,10 @@
+---
+bungeecord:
+  build: bungeecord
+  stdin_open: true
+  tty: true
+
+spigot:
+  build: spigot
+  stdin_open: true
+  tty: true
