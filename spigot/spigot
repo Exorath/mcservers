@@ -57,7 +57,7 @@ sync() {
 
 run_spigot() {
     echo "Running Spigot"
-    echo "MINECRAFT_OPTS: $MINECRAFT_OPTS"
-    MINECRAFT_COMMAND="gosu minecraft java $MINECRAFT_OPTS -jar $MC_HOME/$MC_JAR nogui"
-    exec $MINECRAFT_COMMAND
+    echo "MINECRAFT_OPTS: $MC_OPTS"
+    MC_COMMAND="gosu minecraft java $MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
+    exec $MC_COMMAND
 }
