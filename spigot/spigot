@@ -51,8 +51,10 @@ sync() {
     mkdir -p $MC_HOME
     cp $MC_JARS/$MC_JAR $MC_HOME/$MC_JAR
     # Move all global files and folders into the temporary file system
+    mkdir -p $MC_GLOBAL
     rsync -a $MC_GLOBAL/ $MC_HOME/
     # Move all game specific files and folders into the temporary file system
+    mkdir -p $MC_GAME
     rsync -a $MC_GAME/ $MC_HOME/
 }
 
