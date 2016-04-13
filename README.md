@@ -1,4 +1,5 @@
 # mcservers
+NOTE: This is meant as a private project, feel free to look at the source but don't take it to work for granted.
 ## Description
 Exorath/mcservers contains docker images to run bungeecord and spigot stateless. This means that the data within the container has no value and will not be saved (Except the server jar if it does not exist yet).
 
