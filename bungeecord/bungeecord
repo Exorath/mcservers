@@ -1,3 +1,4 @@
+#!/bin/bash
 # Base location of persistent data
 BUNGEE_BASE="/opt/bungeecord"
 BUNGEE_GLOBAL="$BUNGEE_BASE/global"
