@@ -15,7 +15,10 @@ RUN useradd -g minecraft -u 1000 -r -M minecraft
 
 # Create location for the server jars and plugins
 VOLUME ["/opt/minecraft"]
-RUN mkdir -p /opt/minecraft/
+RUN mkdir -p /opt/minecraft/jars && /
+    mkdir -p /opt/minecraft/global && /
+    mkdir -p /opt/minecraft/games && /
+    mkdir -p /opt/mcserver
 
 # Exposes local port, must be exposed publically with -p xxxx:25565
 EXPOSE 25565
