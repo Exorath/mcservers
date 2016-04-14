@@ -1,6 +1,7 @@
 #!/bin/bash
 # Temporary location for server
 BUNGEE_HOME="/opt/bungee"
+mkdir -p "$BUNGEE_HOME"
 # Base location of persistent data
 BUNGEE_BASE="/opt/bungeecord"
 BUNGEE_GLOBAL="$BUNGEE_BASE/global"
@@ -45,7 +46,6 @@ download_server() {
 
 # Sync files from the persistent BUNGEE_BASE to the temporary BUNGEE_HOME
 sync(){
-  mkdir -p $BUNGEE_HOME
   # Server jar
   cp $BUNGEE_JARS/$BUNGEE_JAR $BUNGEE_HOME/$BUNGEE_JAR
   # Global files
