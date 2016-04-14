@@ -1,12 +1,17 @@
 #!/bin/bash
 # Locate the temporary directories
 MC_HOME="/opt/mcserver"
+mkdir -p $MC_HOME
 
 # Locate the persistent directories
 MC_BASE="/opt/minecraft"
+mkdir -p $MC_BASE
 MC_JARS="$MC_BASE/jars"
+mkdir -p $MC_JARS
 MC_GLOBAL="$MC_BASE/global"
+mkdir -p $MC_GLOBAL
 MC_GAME="$MC_BASE/games/${MC_GAME:-hub}"
+mkdir -p $MC_GAME
 
 # Variables for jar loading
 SPIGOT_BUILDTOOLS_URL=${SPIGOT_BUILDTOOLS_URL:-"https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar"}
