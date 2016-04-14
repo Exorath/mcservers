@@ -59,7 +59,7 @@ run_bungeecord() {
     echo "BUNGEE_OPTS: $BUNGEE_OPTS"
     
     # Command to start bungeecord instance with
-    BUNGEE_COMMAND="gosu bungeecord java $BUNGEE_OPTS -jar $BUNGEE_HOME/$BUNGEE_JAR"
+    BUNGEE_COMMAND="java $BUNGEE_OPTS -jar $BUNGEE_HOME/$BUNGEE_JAR"
     
     # Append parameters to the command
     PARAMS=$@
