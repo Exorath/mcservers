@@ -48,6 +48,7 @@ sync(){
   cp $BUNGEE_JARS/$BUNGEE_JAR $BUNGEE_HOME/$BUNGEE_JAR
   # Global files
   rsync -a $BUNGEE_GLOBAL/ $BUNGEE_HOME/
+  chmod -R 777 $BUNGEE_HOME/
 }
 
 # Executes the bungeecord jar
