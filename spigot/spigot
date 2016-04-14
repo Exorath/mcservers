@@ -18,9 +18,9 @@ MC_OPTS=${MC_OPTS:-"-server -Xmx1024m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"}
 TMUX_SESSION=spigot
 
 #Start the server
-init
+setup_server
 
-init(){
+setup_server(){
  build_server
  sync
  run_spigot
