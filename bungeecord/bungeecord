@@ -19,10 +19,7 @@ BUNGEE_JAR="BungeeCord-$BUNGEE_VERSION.jar"
 BUNGEE_OPTS=${BUNGEE_OPTS:-"-server -Xmx1024m -XX:MaxPermSize=256m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"}
 TMUX_SESSION=bungeecord
 
-#Initiate the server loading process
-init
-
-init(){
+startup_bungee(){
   download_server
   sync
   run_bungeecord
@@ -67,3 +64,6 @@ run_bungeecord() {
     # Run actual command in a tmux session
     tmux new -s $TMUX_SESSION "$BUNGEE_COMMAND"
 }
+
+#Initiate the server loading process
+startup_bungee
