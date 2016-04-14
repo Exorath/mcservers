@@ -1,4 +1,6 @@
 #!/bin/bash
+# Temporary location for server
+BUNGEE_HOME="/opt/bungee"
 # Base location of persistent data
 BUNGEE_BASE="/opt/bungeecord"
 BUNGEE_GLOBAL="$BUNGEE_BASE/global"
