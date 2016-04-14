@@ -3,8 +3,17 @@ bungeecord:
   build: bungeecord
   stdin_open: true
   tty: true
-
+  ports:
+  - 25565:25565
+  volumes:
+  - persistent:/opt/bungeecord
+  links:
+  - spigot
+  restart:always
 spigot:
   build: spigot
   stdin_open: true
   tty: true
+  volumes:
+  - persistent:/opt/minecraft
+  restart:always
