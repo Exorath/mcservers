@@ -3,7 +3,9 @@
 BUNGEE_BASE="/opt/bungeecord"
 BUNGEE_GLOBAL="$BUNGEE_BASE/global"
 BUNGEE_JARS="$BUNGEE_BASE/jars"
-
+mkdir -p "$BUNGEE_BASE"
+mkdir -p "$BUNGEE_GLOBAL"
+mkdir -p "$BUNGEE_JARS"
 # Variables required for jar downloading
 BUNGEE_URL_BASE="http://ci.md-5.net/job/BungeeCord"
 BUNGEE_URL_TARGET_PATH="artifact/bootstrap/target/BungeeCord.jar"
