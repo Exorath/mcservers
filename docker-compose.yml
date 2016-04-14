@@ -9,11 +9,11 @@ bungeecord:
   - persistent:/opt/bungeecord
   links:
   - spigot
-  restart:always
+  restart: always
 spigot:
   build: spigot
   stdin_open: true
   tty: true
   volumes:
   - persistent:/opt/minecraft
-  restart:always
+  restart: always
