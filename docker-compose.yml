@@ -15,5 +15,5 @@ spigot:
   stdin_open: true
   tty: true
   volumes:
-  - /opt/spigot:/opt/spigot
+  - /opt/minecraft:/opt/minecraft
   restart: always
