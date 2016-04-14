@@ -4,8 +4,8 @@ MC_HOME="/opt/mcserver"
 
 # Locate the persistent directories
 MC_BASE="/opt/minecraft"
-MC_JARS= "$MC_BASE/jars"
-MC_GLOBAL= "$MC_BASE/global"
+MC_JARS="$MC_BASE/jars"
+MC_GLOBAL="$MC_BASE/global"
 MC_GAME="$MC_BASE/games/${MC_GAME:-hub}"
 
 # Variables for jar loading
