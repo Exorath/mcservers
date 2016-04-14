@@ -17,9 +17,6 @@ MC_JAR=${MC_JAR:-"spigot-$MC_VERSION.jar"}
 MC_OPTS=${MC_OPTS:-"-server -Xmx1024m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"}
 TMUX_SESSION=spigot
 
-#Start the server
-setup_server
-
 setup_server(){
  build_server
  sync
@@ -64,3 +61,5 @@ run_spigot() {
     MC_COMMAND="gosu minecraft java $MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
     tmux new -s $TMUX_SESSION "MC_COMMAND"
 }
+#Start the server
+setup_server
