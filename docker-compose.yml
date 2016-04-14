@@ -15,5 +15,5 @@ spigot:
   stdin_open: true
   tty: true
   volumes:
-  - /opt/bungeecord:/opt/bungeecord
+  - /opt/spigot:/opt/spigot
   restart: always
