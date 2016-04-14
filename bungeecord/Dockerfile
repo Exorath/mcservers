@@ -19,9 +19,6 @@ EXPOSE 25565
 
 # Create location for bungeecord persistent files
 VOLUME ["/opt/bungeecord"]
-RUN mkdir -p /opt/bungeecord \
- && mkdir -p /opt/bungeecord/jars \
- && mkdir -p /opt/bungeecord/global
 
 # Copy the execution script, make sure it can be executed and set it as entrpoint
 COPY ./bungeecord /usr/local/bin/
