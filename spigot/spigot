@@ -58,6 +58,7 @@ sync() {
     # Move all game specific files and folders into the temporary file system
     mkdir -p $MC_GAME
     rsync -a $MC_GAME/ $MC_HOME/
+    chmod -R 777 $MC_HOME/
 }
 
 run_spigot() {
