@@ -64,7 +64,7 @@ sync() {
 run_spigot() {
     echo "Running Spigot"
     echo "MINECRAFT_OPTS: $MC_OPTS"
-    MC_COMMAND="gosu minecraft java $MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
+    MC_COMMAND="$MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
     tmux new -s $TMUX_SESSION "MC_COMMAND"
 }
 #Start the server
