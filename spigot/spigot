@@ -65,7 +65,7 @@ run_spigot() {
     echo "Running Spigot"
     echo "MINECRAFT_OPTS: $MC_OPTS"
     MC_COMMAND="$MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
-    tmux new -s $TMUX_SESSION "MC_COMMAND"
+    tmux new -s $TMUX_SESSION "$MC_COMMAND"
 }
 #Start the server
 setup_server
