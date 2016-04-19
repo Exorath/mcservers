@@ -5,7 +5,7 @@ MAINTAINER Toon Sevrin <twan123@live.be>
 RUN useradd -s /bin/bash -d /opt/mcserver -m minecraft
 
 # Install rsync that will allow us to sync from volumes
-RUN apt-get update && apt-get -y install rsync
+RUN apt-get update && apt-get install -y curl rsync tmux && rm -rf /var/lib/apt/lists/* \
 
 # Create location for the server jars and plugins
 VOLUME ["/opt/minecraft"]
