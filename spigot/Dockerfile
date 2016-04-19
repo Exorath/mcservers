@@ -1,17 +1,11 @@
 FROM java:8
 MAINTAINER Toon Sevrin <twan123@live.be>
-# GOSU is a simple tool grown out of the simple fact that su and sudo have very strange and often annoying TTY and signal-forwarding behavior. 
-RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-    && apt-get update && apt-get install -y curl rsync tmux && rm -rf /var/lib/apt/lists/* \
-    && curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture)" \
-    && curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.2/gosu-$(dpkg --print-architecture).asc" \
-    && gpg --verify /usr/local/bin/gosu.asc \
-    && rm /usr/local/bin/gosu.asc \
-    && chmod +x /usr/local/bin/gosu
-    
-# Create a group and user for the server environment
-RUN groupadd -g 1000 minecraft
-RUN useradd -g minecraft -u 1000 -r -M minecraft
+
+# Create user to run spigot as, this will make sure permissions work as well
+RUN useradd -s /bin/bash -d /opt/mcserver -m minecraft
+
+# Install rsync that will allow us to sync from volumes
+RUN apt-get update && apt-get -y install rsync
 
 # Create location for the server jars and plugins
 VOLUME ["/opt/minecraft"]
