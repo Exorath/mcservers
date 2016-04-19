@@ -67,7 +67,7 @@ run_bungeecord() {
     BUNGEE_COMMAND="$BUNGEE_COMMAND ${PARAMS[@]}"
     
     # Run actual command in a tmux session
-    tmux new -s $TMUX_SESSION "$BUNGEE_COMMAND"
+    tmux new -s $TMUX_SESSION "su - bungee -c 'exec $BUNGEE_COMMAND'"
 }
 
 #Initiate the server loading process
