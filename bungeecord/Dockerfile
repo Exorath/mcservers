@@ -2,7 +2,7 @@ FROM java:8
 MAINTAINER Toon Sevrin <twan123@live.be>
 
 # Create user to run spigot as, this will make sure permissions work as well
-RUN useradd -s /bin/bash -d /opt/mcserver -m minecraft
+RUN useradd -s /bin/bash -d /opt/mcserver -m bungeecord
 
 # Install rsync that will allow us to sync from volumes
 RUN apt-get update && apt-get install -y curl rsync tmux && rm -rf /var/lib/apt/lists/* \
