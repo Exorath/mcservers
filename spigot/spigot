@@ -58,13 +58,14 @@ sync() {
     # Move all game specific files and folders into the temporary file system
     mkdir -p $MC_GAME
     rsync -a $MC_GAME/ $MC_HOME/
+    chmod -R +777 $MC_HOME/
 }
 
 run_spigot() {
     echo "Running Spigot"
     echo "MINECRAFT_OPTS: $MC_OPTS"
     MC_COMMAND="java $MC_OPTS -jar $MC_HOME/$MC_JAR nogui"
-    tmux new -s $TMUX_SESSION "su - -c 'exec $MC_COMMAND'"
+    tmux new -s $TMUX_SESSION "su - minecraft -c 'exec $MC_COMMAND'"
 }
 #Start the server
 setup_server
