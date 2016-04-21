@@ -27,8 +27,9 @@ consul:
   command: "-bootstrap"
 registrator:
   image: gliderlabs/registrator
+  command: "-internal consul://consul:8500"
+  container_name: 'registrator'
   links:
   - consul
-  command: "consul://localhost:8500"
   volumes:
   - /var/run/docker.sock:/tmp/docker.sock
