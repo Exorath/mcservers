@@ -18,7 +18,7 @@ spigot:
   - /opt/minecraft:/opt/minecraft
   restart: always
 consul:
-  image: progrium/consul
+  image: gliderlabs/consul
   ports:
   - "8400:8400"
   - "8500:8500"
