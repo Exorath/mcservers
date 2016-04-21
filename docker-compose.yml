@@ -13,7 +13,9 @@ bungeecord:
 spigot:
   build: spigot
   stdin_open: true
-  tty: true
+  tty: true  
+  ports:
+  - "25566-26000:8500"
   volumes:
   - /opt/minecraft:/opt/minecraft
   restart: always
