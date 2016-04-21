@@ -30,7 +30,7 @@ consul:
   command: "-bootstrap"
 registrator:
   image: gliderlabs/registrator
-  command: "-internal consul://consul:8500"
+  command: "consul://consul:8500"
   container_name: 'registrator'
   links:
   - consul
