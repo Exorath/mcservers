@@ -15,13 +15,14 @@ spigot:
   stdin_open: true
   tty: true  
   ports:
-  - "25566-26000:8500"
+  - "25565:25565"
   volumes:
   - /opt/minecraft:/opt/minecraft
   restart: always
 consul:
   image: gliderlabs/consul-server
   container_name: consul
+  hostname: consul
   ports:
   - "0.0.0.0:8500:8500"
   - "8301:8301"
