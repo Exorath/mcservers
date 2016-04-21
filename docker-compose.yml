@@ -19,7 +19,7 @@ spigot:
   restart: always
 consul:
   image: gliderlabs/consul-server
-  container_name: consul_1
+  container_name: consul
   ports:
   - "0.0.0.0:8500:8500"
   - "8301:8301"
