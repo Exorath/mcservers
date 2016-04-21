@@ -27,7 +27,7 @@ consul:
   command: "-bootstrap"
 registrator:
   image: gliderlabs/registrator
-  link:
+  links:
   - consul
   command: "consul://localhost:8500"
   volumes:
