@@ -22,8 +22,6 @@ spigot:
 registrator:
   image: gliderlabs/registrator
   command: "etcd2://localhost:2379"
-  container_name: 'registrator'
-  links:
-  - consul
+  container_name: registrator
   volumes:
   - /var/run/docker.sock:/tmp/docker.sock
