@@ -19,18 +19,9 @@ spigot:
   volumes:
   - /opt/minecraft:/opt/minecraft
   restart: always
-consul:
-  image: gliderlabs/consul-server
-  container_name: consul
-  hostname: consul
-  ports:
-  - "0.0.0.0:8500:8500"
-  - "8301:8301"
-  - "8400:8400"
-  command: "-bootstrap"
 registrator:
   image: gliderlabs/registrator
-  command: "consul://consul:8500"
+  command: "etcd2://localhost:2379"
   container_name: 'registrator'
   links:
   - consul
