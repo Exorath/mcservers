@@ -21,7 +21,8 @@ spigot:
   restart: always
 registrator:
   image: gliderlabs/registrator
-  command: "etcd://10.1.42.1:2379"
+  net: host
+  command: "etcd://localhost:2379"
   container_name: registrator
   volumes:
   - /var/run/docker.sock:/tmp/docker.sock
