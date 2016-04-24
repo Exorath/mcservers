@@ -50,7 +50,7 @@ sync(){
   cp $BUNGEE_JARS/$BUNGEE_JAR $BUNGEE_HOME/$BUNGEE_JAR
   # Global files
   rsync -a $BUNGEE_GLOBAL/ $BUNGEE_HOME/
-  chmod -R 777 $BUNGEE_HOME/
+  chmod -R +777 $BUNGEE_HOME/
 }
 
 # Executes the bungeecord jar
@@ -60,11 +60,6 @@ run_bungeecord() {
     
     # Command to start bungeecord instance with
     BUNGEE_COMMAND="java $BUNGEE_OPTS -jar $BUNGEE_HOME/$BUNGEE_JAR"
-    
-    # Append parameters to the command
-    PARAMS=$@
-    echo "Extra parameters: ${PARAMS[@]}"
-    BUNGEE_COMMAND="$BUNGEE_COMMAND ${PARAMS[@]}"
     
     # Run actual command in a tmux session
     tmux new -s $TMUX_SESSION "su - bungeecord -c 'exec $BUNGEE_COMMAND'"
