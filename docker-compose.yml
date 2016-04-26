@@ -3,7 +3,6 @@ bungeecord:
   build: bungeecord
   stdin_open: true
   tty: true
-  net: host
   ports:
   - 25565:25577
   volumes:
