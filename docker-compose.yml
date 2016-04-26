@@ -8,8 +8,6 @@ bungeecord:
   - 0.0.0.0:25565:25577
   volumes:
   - /opt/bungeecord:/opt/bungeecord
-  links:
-  - spigot
   restart: always
 spigot:
   build: spigot
