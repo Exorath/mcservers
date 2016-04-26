@@ -19,7 +19,7 @@ spigot:
   volumes:
   - /opt/minecraft:/opt/minecraft
   restart: always
-spigot:
+hub:
   build: hub
   stdin_open: true
   tty: true  
