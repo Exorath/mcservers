@@ -19,6 +19,15 @@ spigot:
   volumes:
   - /opt/minecraft:/opt/minecraft
   restart: always
+spigot:
+  build: hub
+  stdin_open: true
+  tty: true  
+  ports:
+  - "25565"
+  volumes:
+  - /opt/minecraft:/opt/minecraft
+  restart: always
 registrator:
   image: gliderlabs/registrator
   net: host
