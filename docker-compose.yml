@@ -14,7 +14,7 @@ services:
   spigot:
     image: exorath/docker-spigot
     environment:
-      SERVICE_NAME: spigot
+      SERVICE_NAME: GAME=spigot
     stdin_open: true
     tty: true  
     ports:
@@ -26,7 +26,7 @@ services:
     extends:
       service: spigot
     environment:
-      SERVICE_NAME: hub
+      SERVICE_NAME: GAME=hub
   registrator:
     image: gliderlabs/registrator
     network_mode: host
