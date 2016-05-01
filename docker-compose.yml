@@ -3,6 +3,7 @@ version: '2'
 services:
   bungeecord:
     build: bungeecord
+    network_mode: host
     stdin_open: true
     tty: true
     ports:
