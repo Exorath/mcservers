@@ -32,7 +32,7 @@ services:
     restart: always
   registrator:
     image: gliderlabs/registrator
-    net: host
+    network_mode: host
     command: "etcd://localhost:2379"
     container_name: registrator
     volumes:
