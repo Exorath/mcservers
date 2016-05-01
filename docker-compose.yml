@@ -12,6 +12,8 @@ services:
     restart: always
   spigot:
     image: exorath/docker-spigot
+    environment:
+      SERVICE_NAME: spigot
     stdin_open: true
     tty: true  
     ports:
