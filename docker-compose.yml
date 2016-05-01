@@ -33,7 +33,7 @@ services:
   registrator:
     image: gliderlabs/registrator
     network_mode: host
-    command: "etcd://localhost:2379"
+    command: "etcd://localhost:2379 --cleanup"
     container_name: registrator
     volumes:
     - /var/run/docker.sock:/tmp/docker.sock
