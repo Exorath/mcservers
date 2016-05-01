@@ -1,1 +1,1 @@
-FROM spigot
+FROM exorath/docker-spigot
