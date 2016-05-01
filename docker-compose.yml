@@ -22,16 +22,10 @@ services:
     - /opt/minecraft:/opt/minecraft
     restart: always
   hub:
-    build: hub
-    depends_on:
-    - spigot
-    stdin_open: true
-    tty: true  
-    ports:
-    - "25565"
-    volumes:
-    - /opt/minecraft:/opt/minecraft
-    restart: always
+    extends:
+      service: spigot
+    environment:
+      SERVICE_NAME: hub
   registrator:
     image: gliderlabs/registrator
     network_mode: host
