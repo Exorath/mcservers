@@ -19,6 +19,8 @@ spigot:
   restart: always
 hub:
   build: hub
+  depends_on:
+  - spigot
   stdin_open: true
   tty: true  
   ports:
