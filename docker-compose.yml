@@ -11,7 +11,7 @@ services:
     - /opt/bungeecord:/opt/bungeecord
     restart: always
   spigot:
-    build: spigot
+    image: exorath/docker-spigot
     stdin_open: true
     tty: true  
     ports:
