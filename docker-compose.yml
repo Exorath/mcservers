@@ -1,37 +1,40 @@
 ---
-bungeecord:
-  build: bungeecord
-  stdin_open: true
-  tty: true
-  ports:
-  - 25565:25577
-  volumes:
-  - /opt/bungeecord:/opt/bungeecord
-  restart: always
-spigot:
-  build: spigot
-  stdin_open: true
-  tty: true  
-  ports:
-  - "25565"
-  volumes:
-  - /opt/minecraft:/opt/minecraft
-  restart: always
-hub:
-  build: hub
-  depends_on:
-  - spigot
-  stdin_open: true
-  tty: true  
-  ports:
-  - "25565"
-  volumes:
-  - /opt/minecraft:/opt/minecraft
-  restart: always
-registrator:
-  image: gliderlabs/registrator
-  net: host
-  command: "etcd://localhost:2379"
-  container_name: registrator
-  volumes:
-  - /var/run/docker.sock:/tmp/docker.sock
+version: '2'
+services:
+  bungeecord:
+    build: bungeecord
+    stdin_open: true
+    tty: true
+    ports:
+    - 25565:25577
+    volumes:
+    - /opt/bungeecord:/opt/bungeecord
+    restart: always
+  spigot:
+    build: spigot
+    stdin_open: true
+    tty: true  
+    ports:
+    - "25565"
+    volumes:
+    - /opt/minecraft:/opt/minecraft
+    restart: always
+  hub:
+    build: hub
+    depends_on:
+    - spigot
+    stdin_open: true
+    tty: true  
+    ports:
+    - "25565"
+    volumes:
+    - /opt/minecraft:/opt/minecraft
+    restart: always
+  registrator:
+    image: gliderlabs/registrator
+    net: host
+    command: "etcd://localhost:2379"
+    container_name: registrator
+    volumes:
+    - /var/run/docker.sock:/tmp/docker.sock
+
