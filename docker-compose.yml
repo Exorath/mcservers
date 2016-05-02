@@ -7,7 +7,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-    - 25565:25577
+    - 0.0.0.0:25565:25577
     volumes:
     - /opt/bungeecord:/opt/bungeecord
     restart: always
