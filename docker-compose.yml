@@ -8,10 +8,14 @@ services:
     volumes:
     - /opt/bungeecord:/opt/bungeecord
     restart: always
+    networks:
+    - mc
     links:
     - spigot
     #- etcd
     external_links:
+    - etcd
+    depends_on:
     - etcd
   spigot:
     image: exorath/docker-spigot
@@ -42,8 +46,11 @@ services:
   etcd:
     image: quay.io/coreos/etcd
     container_name: etcd
+    networks:
+    - mc
     ports:
     - 127.0.0.1:2379:2379
     command: "-advertise-client-urls=http://etcd:2379 -listen-client-urls=http://0.0.0.0:2379"
 
-
+networks:
+  mc:
