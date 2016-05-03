@@ -3,7 +3,6 @@ version: '2'
 services:
   bungeecord:
     build: bungeecord
-    network_mode: host
     stdin_open: true
     tty: true
     ports:
@@ -11,14 +10,15 @@ services:
     volumes:
     - /opt/bungeecord:/opt/bungeecord
     restart: always
+    links:
+    - etcd
+    - spigot
   spigot:
     image: exorath/docker-spigot
     environment:
       SERVICE_NAME: GAME=spigot
     stdin_open: true
-    tty: true  
-    ports:
-    - "25565"
+    tty: true
     volumes:
     - /opt/minecraft:/opt/minecraft
     restart: always
@@ -29,9 +29,16 @@ services:
       SERVICE_NAME: GAME=hub
   registrator:
     image: gliderlabs/registrator
-    network_mode: host
-    command: "-cleanup=true etcd://localhost:2379"
+    command: "--internal=true -cleanup=true etcd://etcd:2379"
     container_name: registrator
     volumes:
     - /var/run/docker.sock:/tmp/docker.sock
+    links:
+    - etcd
+  etcd:
+    image: quay.io/coreos/etcd
+    ports:
+    - 127.0.0.1:2379:2379
+    command: "-advertise-client-urls=http://etcd:2379 -listen-client-urls=http://0.0.0.0:2379"
+
 
