@@ -7,9 +7,6 @@ RUN useradd -s /bin/bash -d /opt/bungee -m bungeecord
 # Install rsync that will allow us to sync from volumes
 RUN apt-get update && apt-get install -y curl rsync tmux && rm -rf /var/lib/apt/lists/* \
 
-# Exposes local port, must be exposed publically with -p xxxx:25565
-EXPOSE 25565
-
 # Create location for bungeecord persistent files
 VOLUME ["/opt/bungeecord"]
 
