@@ -39,6 +39,8 @@ services:
     #- etcd
     external_links:
     - etcd
+    depends_on:
+    - etcd
   etcd:
     image: quay.io/coreos/etcd
     container_name: etcd
