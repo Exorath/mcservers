@@ -11,8 +11,10 @@ services:
     - /opt/bungeecord:/opt/bungeecord
     restart: always
     links:
-    - etcd
     - spigot
+    #- etcd
+    external_links:
+    - etcd
   spigot:
     image: exorath/docker-spigot
     environment:
@@ -33,10 +35,13 @@ services:
     container_name: registrator
     volumes:
     - /var/run/docker.sock:/tmp/docker.sock
-    links:
+    #links:
+    #- etcd
+    external_links:
     - etcd
   etcd:
     image: quay.io/coreos/etcd
+    container_name: etcd
     ports:
     - 127.0.0.1:2379:2379
     command: "-advertise-client-urls=http://etcd:2379 -listen-client-urls=http://0.0.0.0:2379"
