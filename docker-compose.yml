@@ -8,13 +8,10 @@ services:
     volumes:
     - /opt/bungeecord:/opt/bungeecord
     restart: always
-    networks:
-    - mc
     links:
     - spigot
-    #- etcd
     external_links:
-    - etcd
+    - etcd:etcd
     depends_on:
     - etcd
   spigot:
@@ -37,8 +34,6 @@ services:
     container_name: registrator
     volumes:
     - /var/run/docker.sock:/tmp/docker.sock
-    #links:
-    #- etcd
     external_links:
     - etcd
     depends_on:
@@ -46,11 +41,6 @@ services:
   etcd:
     image: quay.io/coreos/etcd
     container_name: etcd
-    networks:
-    - mc
     ports:
     - 127.0.0.1:2379:2379
     command: "-advertise-client-urls=http://etcd:2379 -listen-client-urls=http://0.0.0.0:2379"
-
-networks:
-  mc:
