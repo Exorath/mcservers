@@ -3,6 +3,7 @@ version: '2'
 services:
   bungeecord:
     build: bungeecord
+    network_mode: "bridge"
     stdin_open: true
     tty: true
     volumes:
@@ -12,10 +13,9 @@ services:
     - spigot
     external_links:
     - etcd:etcd
-    depends_on:
-    - etcd
   spigot:
     image: exorath/docker-spigot
+    network_mode: "bridge"
     environment:
       SERVICE_NAME: GAME=spigot
     stdin_open: true
@@ -31,16 +31,9 @@ services:
   registrator:
     image: gliderlabs/registrator
     command: "--internal=true -cleanup=true etcd://etcd:2379"
+    network_mode: "bridge"
     container_name: registrator
     volumes:
     - /var/run/docker.sock:/tmp/docker.sock
     external_links:
-    - etcd
-    depends_on:
-    - etcd
-  etcd:
-    image: quay.io/coreos/etcd
-    container_name: etcd
-    ports:
-    - 127.0.0.1:2379:2379
-    command: "-advertise-client-urls=http://etcd:2379 -listen-client-urls=http://0.0.0.0:2379"
+    - etcd:etcd
