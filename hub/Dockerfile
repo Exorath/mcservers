@@ -1,1 +1,0 @@
-FROM exorath/docker-spigot
